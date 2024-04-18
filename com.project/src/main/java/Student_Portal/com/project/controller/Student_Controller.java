@@ -72,12 +72,9 @@ public class Student_Controller {
 		ResponseEntity<String> response=null;
 		if(savedstudent!=null) {
 			String url = "http://localhost:8081/accounts/";
-	        
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.set("Content-Type", "application/json");
-	        
 	        String requestBody = "{\"studentId\": \"" + savedstudent.getStudentId() + "\"}";
-	        
 	        HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
 	        response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);    
 		}	
@@ -87,7 +84,6 @@ public class Student_Controller {
 	
 	@GetMapping("/student/invoices/{referenceid}")
 	public String getInvoiceStatus(@PathVariable String referenceid) {
-//		Student student=student_Service.findStudentById(studentid);
 		Invoice invoice=invoiceService.getInvoiceByReferenceId(referenceid);
 		String balance = null;
 		if(invoice.getStatus()==Status.OUTSTANDING) {
