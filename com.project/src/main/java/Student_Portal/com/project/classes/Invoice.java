@@ -72,5 +72,5 @@ public class Invoice {
 		this.type = type;
 	}
 	
-	
+	// this is the clone of the invoice class
 }
