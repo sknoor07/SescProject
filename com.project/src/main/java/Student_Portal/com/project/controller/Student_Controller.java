@@ -44,7 +44,7 @@ class AppConfig {
 public class Student_Controller {
 	private Student_Service student_Service;
 	@Autowired
-    private RestTemplate restTemplate;
+	public RestTemplate restTemplate;
 	
 	private InvoiceService invoiceService;
 	
@@ -52,6 +52,14 @@ public class Student_Controller {
 		super();
 		this.student_Service = student_Service;
 		this.invoiceService=invoiceService;
+	}
+	
+	
+
+
+	public Student_Controller() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@GetMapping("/student")
@@ -64,19 +72,23 @@ public class Student_Controller {
 	public Student getStudentById(@PathVariable String studentId) {
 		Student student=student_Service.findStudentById(studentId);
 		return student;
-	}
+	}  
 	
 	@PostMapping("/student")
 	public ResponseEntity<Object> createStudent(@RequestBody Student student) {
 		Student savedstudent=student_Service.addStudent(student);
 		ResponseEntity<String> response=null;
+		
 		if(savedstudent!=null) {
 			String url = "http://localhost:8081/accounts/";
+			String url_books="http://localhost:80/api/register";
 	        HttpHeaders headers = new HttpHeaders();
 	        headers.set("Content-Type", "application/json");
 	        String requestBody = "{\"studentId\": \"" + savedstudent.getStudentId() + "\"}";
 	        HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
-	        response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);    
+	        
+	        response = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class); 
+	        ResponseEntity<String> response_books = restTemplate.exchange(url_books, HttpMethod.POST, requestEntity, String.class); 
 		}	
 		return ResponseEntity.created(response.getHeaders().getLocation()).build();
 	}
