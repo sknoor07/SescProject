@@ -12,12 +12,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import Student_Portal.com.project.classes.Invoice;
-import Student_Portal.com.project.repository.InvoiceRepository;
+import Student_Portal.com.project.repository.Invoice_Repository;
 @Component
-public class InvoiceService {
-	private InvoiceRepository invoiceRepository;
+public class Invoice_Service {
+	private Invoice_Repository invoiceRepository;
 
-	public InvoiceService(InvoiceRepository invoiceRepository) {
+	public Invoice_Service(Invoice_Repository invoiceRepository) {
 		super();
 		this.invoiceRepository = invoiceRepository;
 	}
@@ -39,25 +39,7 @@ public class InvoiceService {
 	    	System.out.println("ReferenceExists");
 	    }
 	    return responseEntity.getBody();
-//	    ResponseEntity<CollectionModel<EntityModel<Invoice>>> responseEntity = 
-//	            restTemplate.exchange(apiUrl, HttpMethod.GET, null, 
-//	                                   new ParameterizedTypeReference<CollectionModel<EntityModel<Invoice>>>() {});
-//
-//	        if (responseEntity.getStatusCode().is2xxSuccessful()) {
-//	            CollectionModel<EntityModel<Invoice>> invoiceResources = responseEntity.getBody();
-//	            if (invoiceResources != null) {
-//	                for (EntityModel<Invoice> invoiceResource : invoiceResources.getContent()) {
-//	                    Invoice invoice = invoiceResource.getContent();
-//	                    invoiceRepository.save(invoice); 
-//	                }
-//	            }
-//	        } 
 	}
-
-//	public Invoice findInvoiceByStudentId(String studentid) {
-//		Invoice invoice=invoiceRepository.findByStudentid(studentid);
-//		return invoice;
-//	}
 	
 	public Invoice findInvoiceByStudentId(String studentid) {
 	    try {

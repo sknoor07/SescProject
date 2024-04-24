@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import Student_Portal.com.project.classes.Student;
-import Student_Portal.com.project.repository.StudentRepository;
+import Student_Portal.com.project.repository.Student_Repository;
 
 @Component
 public class Student_Service {
-	private StudentRepository  studentRepository;
+	private Student_Repository  studentRepository;
 
-	public Student_Service(StudentRepository studentRepository) {
+	public Student_Service(Student_Repository studentRepository) {
 		super();
 		this.studentRepository = studentRepository;
 	}

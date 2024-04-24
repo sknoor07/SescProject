@@ -27,14 +27,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import Student_Portal.com.project.classes.Invoice;
 import Student_Portal.com.project.classes.Status;
 import Student_Portal.com.project.classes.Student;
-import Student_Portal.com.project.repository.InvoiceRepository;
-import Student_Portal.com.project.service.InvoiceService;
+import Student_Portal.com.project.repository.Invoice_Repository;
+import Student_Portal.com.project.service.Invoice_Service;
 import Student_Portal.com.project.service.Student_Service;
 
 @Configuration
 class AppConfig {
 
-    @Bean
+    @Bean//setter
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
@@ -43,24 +43,17 @@ class AppConfig {
 @RestController
 public class Student_Controller {
 	private Student_Service student_Service;
-	@Autowired
+	@Autowired //field
 	public RestTemplate restTemplate;
 	
-	private InvoiceService invoiceService;
+	private Invoice_Service invoiceService;
 	
-	public Student_Controller(Student_Service student_Service, InvoiceService invoiceService) {
+	public Student_Controller(Student_Service student_Service, Invoice_Service invoiceService) {
 		super();
 		this.student_Service = student_Service;
 		this.invoiceService=invoiceService;
 	}
 	
-	
-
-
-	public Student_Controller() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	@GetMapping("/student")
 	public List<Student>getAllStudent() {
